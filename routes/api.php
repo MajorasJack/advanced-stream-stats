@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\TwitchAuthenticationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TwitchAuthenticationRedirectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/twitch/authenticate', TwitchAuthenticationController::class)
+    ->name('twitch.authenticate');
+
+Route::get('/twitch/redirect', TwitchAuthenticationRedirectController::class)
+    ->name('twitch.redirect');
