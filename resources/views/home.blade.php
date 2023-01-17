@@ -14,7 +14,25 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Subs</th>
+                                <th scope="col">Last Stream Views</th>
+                                <th scope="col">7 Day View Average</th>
+                                <th scope="col">30 Day View Average</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">{{ rand(1, 1000) }}</th>
+                                <td>{{ rand(1, 100) }}</td>
+                                <td>{{ rand(100, 500) }}</td>
+                                <td>{{ rand(500, 1000) }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
                 </div>
             </div>
         </div>

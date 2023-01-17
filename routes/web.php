@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TwitchAuthenticationController;
+use App\Http\Controllers\TwitchAuthenticationRedirectController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/twitch/authenticate', TwitchAuthenticationController::class)
+    ->name('twitch.authenticate');
 
-Route::get('/home', [HomeController::class, 'index'])->middleware('auth:sanctum')->name('home');
+Route::get('/twitch/redirect', TwitchAuthenticationRedirectController::class)
+    ->name('twitch.redirect');
+
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');

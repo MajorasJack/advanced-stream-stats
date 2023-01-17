@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Laravel\Socialite\Facades\Socialite;
 
 class Authenticate extends Middleware
 {

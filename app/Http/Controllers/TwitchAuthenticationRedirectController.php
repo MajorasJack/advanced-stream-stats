@@ -20,7 +20,7 @@ class TwitchAuthenticationRedirectController extends Controller
                 'email' => $socialiteUser->getEmail(),
             ]);
 
-            auth('sanctum')->setUser($user);
+            auth()->login($user);
 
             return redirect()->to('/home');
         } catch (InvalidStateException) {
