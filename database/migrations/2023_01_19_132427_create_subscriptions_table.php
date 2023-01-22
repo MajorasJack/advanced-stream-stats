@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('price');
-            $table->string('braintree_id');
+            $table->string('external_subscription_id');
             $table->boolean('yearly')->default(false);
             $table->timestamps();
         });

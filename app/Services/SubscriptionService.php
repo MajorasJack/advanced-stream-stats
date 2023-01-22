@@ -35,7 +35,7 @@ class SubscriptionService
             return null;
         }
 
-        return SubscriptionModel::where('braintree_id', $this->getUsersSubscription()->planId)->first();
+        return SubscriptionModel::where('external_subscription_id', $this->getUsersSubscription()->planId)->first();
     }
 
     /**

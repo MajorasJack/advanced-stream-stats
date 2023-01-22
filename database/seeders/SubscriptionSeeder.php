@@ -18,19 +18,19 @@ class SubscriptionSeeder extends Seeder
         Subscription::insert([
             [
                 'name' => SubscriptionTypes::STARTER_MONTHLY_STRING,
-                'braintree_id' => config('payments.braintree.starter_plan_id'),
+                'external_subscription_id' => config('payments.braintree.starter_plan_id'),
                 'price' => '€3',
                 'yearly' => false,
             ],
             [
                 'name' => SubscriptionTypes::PRO_MONTHLY_STRING,
-                'braintree_id' => config('payments.braintree.pro_monthly_plan_id'),
+                'external_subscription_id' => config('payments.braintree.pro_monthly_plan_id'),
                 'price' => '€6',
                 'yearly' => false,
             ],
             [
                 'name' => SubscriptionTypes::PRO_YEARLY_STRING,
-                'braintree_id' => config('payments.braintree.pro_yearly_plan_id'),
+                'external_subscription_id' => config('payments.braintree.pro_yearly_plan_id'),
                 'price' => '€60',
                 'yearly' => true,
             ]

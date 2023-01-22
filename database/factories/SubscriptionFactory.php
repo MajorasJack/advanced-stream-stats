@@ -20,7 +20,7 @@ class SubscriptionFactory extends Factory
         return [
             'name' => fake()->randomElement(SubscriptionTypes::PLAN_STRING_MAP),
             'price' => fake()->randomNumber(2),
-            'braintree_id' => fake()->randomElement([
+            'external_subscription_id' => fake()->randomElement([
                 config('braintree.braintree.starter_plan_id'),
                 config('braintree.braintree.pro_monthly_plan_id'),
                 config('braintree.braintree.pro_yearly_plan_id'),

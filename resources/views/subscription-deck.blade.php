@@ -22,7 +22,7 @@
                     </ul>
                     <form method="post" action="{{ route('subscription.store') }}">
                         {{ @csrf_field() }}
-                        <input type="hidden" name="plan" value="{{ $subscription->braintree_id }}">
+                        <input type="hidden" name="plan" value="{{ $subscription->external_subscription_id }}">
                         <button type="submit" class="btn btn-outline-secondary mb-3">Subscribe Now</button>
                     </form>
                 </div>

@@ -26,7 +26,7 @@ class SubscriptionRequest extends FormRequest
         return [
             'plan' => [
                 'string',
-                'exists:subscriptions,braintree_id',
+                'exists:subscriptions,external_subscription_id',
             ],
         ];
     }

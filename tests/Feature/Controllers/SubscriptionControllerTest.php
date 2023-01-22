@@ -12,7 +12,7 @@ it('will be able to associate a subscription to a user', function () {
     $user = User::factory()->create();
 
     $subscription = Subscription::factory()->create([
-        'braintree_id' => config('braintree.braintree.pro_yearly_plan_id'),
+        'external_subscription_id' => config('braintree.braintree.pro_yearly_plan_id'),
     ]);
 
     $abstractUser
@@ -28,7 +28,7 @@ it('will be able to associate a subscription to a user', function () {
     Socialite::shouldReceive('driver->user')->andReturn($abstractUser);
 
     $response = $this->actingAs($user)
-        ->postJson(route('subscription.store', ['plan' => $subscription->braintree_id]));
+        ->postJson(route('subscription.store', ['plan' => $subscription->external_subscription_id]));
 
     expect($response)
         ->baseResponse
@@ -45,7 +45,7 @@ it('will be able to cancel a users subscription', function () {
     $user = User::factory()->create();
 
     $subscription = Subscription::factory()->create([
-        'braintree_id' => config('braintree.braintree.pro_yearly_plan_id'),
+        'external_subscription_id' => config('braintree.braintree.pro_yearly_plan_id'),
     ]);
 
     $abstractUser
@@ -60,10 +60,10 @@ it('will be able to cancel a users subscription', function () {
 
     Socialite::shouldReceive('driver->user')->andReturn($abstractUser);
 
-    $this->actingAs($user)->postJson(route('subscription.store', ['plan' => $subscription->braintree_id]));
+    $this->actingAs($user)->postJson(route('subscription.store', ['plan' => $subscription->external_subscription_id]));
 
     $response = $this->actingAs($user)
-        ->postJson(route('subscription.destroy', ['plan' => $subscription->braintree_id]));
+        ->postJson(route('subscription.destroy', ['plan' => $subscription->external_subscription_id]));
 
     expect($response)
         ->baseResponse
