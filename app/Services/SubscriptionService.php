@@ -29,7 +29,7 @@ class SubscriptionService
      * @return SubscriptionModel|null
      * @throws NotFound
      */
-    public function brainTreeSubscriptionToEloquentModel(): ?SubscriptionModel
+    public function externalSubscriptionToEloquentModel(): ?SubscriptionModel
     {
         if (!$this->getUsersSubscription()) {
             return null;
