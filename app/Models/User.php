@@ -12,4 +12,14 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $guarded = ['id'];
+
+    /**
+     * @return string
+     *
+     * @todo Migrate this to a user creation event
+     */
+    public function getExternalCustomerId(): string
+    {
+        return config('braintree.gateway.sandbox_customer_id');
+    }
 }

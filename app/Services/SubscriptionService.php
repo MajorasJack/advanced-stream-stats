@@ -44,7 +44,7 @@ class SubscriptionService
     public function getUsersSubscription(): ?Subscription
     {
         try {
-            $customer = $this->gateway->customer()->find(config('braintree.gateway.sandbox_customer_id'));
+            $customer = $this->gateway->customer()->find(auth()->user()->getExternalCustomerId());
         } catch (InvalidArgumentException|NotFound) {
             return null;
         }
@@ -63,7 +63,7 @@ class SubscriptionService
      */
     public function setUserSubscription(string $subscription): Error|Successful
     {
-        $customer = $this->gateway->customer()->find(config('braintree.gateway.sandbox_customer_id'));
+        $customer = $this->gateway->customer()->find(auth()->user()->getExternalCustomerId());
 
         return $this->gateway->subscription()->create([
             'paymentMethodToken' => $customer->defaultPaymentMethod()->token,
