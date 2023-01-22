@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Socialite\Facades\Socialite;
-
-uses(WithFaker::class);
+use Laravel\Socialite\Two\User as SocialiteUser;
 
 it('will redirect the user back to the application with an invalid login', function () {
     $response = $this->get(route('twitch.redirect'));
@@ -19,10 +17,10 @@ it('will redirect the user back to the application with an invalid login', funct
 });
 
 it('will redirect the user back to the application with a valid login', function () {
-    $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
+    $abstractUser = Mockery::mock(SocialiteUser::class);
 
-    $name = $this->faker->name();
-    $email = $this->faker->email();
+    $name = fake()->name();
+    $email = fake()->email();
 
     $abstractUser
         ->shouldReceive('getId')
@@ -32,7 +30,7 @@ it('will redirect the user back to the application with a valid login', function
         ->shouldReceive('getEmail')
         ->andReturn($email)
         ->shouldReceive('getAvatar')
-        ->andReturn($this->faker->url());
+        ->andReturn(fake()->url());
 
     Socialite::shouldReceive('driver->user')->andReturn($abstractUser);
 
@@ -49,5 +47,5 @@ it('will redirect the user back to the application with a valid login', function
         ->isRedirection()
         ->toBeTrue()
         ->and($this->followRedirects($response))
-        ->assertSee('You are logged in!');
+        ->assertSee('Interested in seeing more stats?');
 });
