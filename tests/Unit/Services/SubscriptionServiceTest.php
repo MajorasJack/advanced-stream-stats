@@ -9,7 +9,7 @@ use Braintree\Result\Error;
 beforeEach(fn () => $this->service = app(SubscriptionService::class));
 
 it('will return null when the users subscription does not exist in braintree or the database', function () {
-    expect($this->service->brainTreeSubscriptionToEloquentModel())->toBeNull();
+    expect($this->service->externalSubscriptionToEloquentModel())->toBeNull();
 });
 
 it('will return the right eloquent model when the users subscription does exist in braintree', function () {
@@ -17,7 +17,7 @@ it('will return the right eloquent model when the users subscription does exist 
         'external_subscription_id' => config('braintree.braintree.pro_yearly_plan_id'),
     ]);
 
-    expect($this->service->brainTreeSubscriptionToEloquentModel())
+    expect($this->service->externalSubscriptionToEloquentModel())
         ->id
         ->toBe($subscription->id)
         ->price
@@ -29,7 +29,7 @@ it('will return the right eloquent model when the users subscription does exist 
 it('will return null when the plan stored in the database does not exist', function () {
     Subscription::factory()->create(['external_subscription_id' => fake()->randomNumber()]);
 
-    expect($this->service->brainTreeSubscriptionToEloquentModel())->toBeNull();
+    expect($this->service->externalSubscriptionToEloquentModel())->toBeNull();
 });
 
 it('will return null when the user does not exist in braintree', function () {

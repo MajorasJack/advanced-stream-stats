@@ -27,7 +27,7 @@ class HomeController extends Controller
         return view('home', [
             'subscriptions' => Subscription::all(),
             'currentSubscription' => $this->subscriptionService->getUsersSubscription(),
-            'currentSubscriptionModel' => $this->subscriptionService->brainTreeSubscriptionToEloquentModel(),
+            'currentSubscriptionModel' => $this->subscriptionService->externalSubscriptionToEloquentModel(),
         ]);
     }
 }
