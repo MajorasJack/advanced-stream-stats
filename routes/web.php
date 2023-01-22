@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => view('welcome'))->name('welcome');
+Route::get('/', fn () => view('login'))->name('login');
 
 Route::get('/twitch/authenticate', TwitchAuthenticationController::class)
     ->name('twitch.authenticate');
