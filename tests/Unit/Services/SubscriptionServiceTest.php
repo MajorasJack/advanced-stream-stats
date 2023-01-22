@@ -1,12 +1,17 @@
 <?php
 
 use App\Models\Subscription;
+use App\Models\User;
 use App\Services\SubscriptionService;
 use Braintree\Exception\NotFound;
 use Braintree\Result\Successful;
 use Braintree\Result\Error;
 
-beforeEach(fn () => $this->service = app(SubscriptionService::class));
+beforeEach(function () {
+    $this->service = app(SubscriptionService::class);
+
+    auth()->login(User::factory()->create());
+});
 
 it('will return null when the users subscription does not exist in braintree or the database', function () {
     expect($this->service->externalSubscriptionToEloquentModel())->toBeNull();

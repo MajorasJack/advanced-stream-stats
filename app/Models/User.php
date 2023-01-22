@@ -14,11 +14,11 @@ class User extends Authenticatable
     protected $guarded = ['id'];
 
     /**
-     * @return string
+     * @return string|null
      *
      * @todo Migrate this to a user creation event
      */
-    public function getExternalCustomerId(): string
+    public function getExternalCustomerId(): ?string
     {
         return config('braintree.gateway.sandbox_customer_id');
     }
