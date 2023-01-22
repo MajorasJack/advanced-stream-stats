@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,3 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
+
+Route::post('subscription/cancel', [SubscriptionController::class, 'destroy'])->name('subscription.destroy');
